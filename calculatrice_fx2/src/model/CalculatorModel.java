@@ -5,7 +5,7 @@ import java.util.Stack;
 public class CalculatorModel implements CalculatorModelInterface {
 	private Stack<Double> pile;
 
-	
+	//Constructor
 	public CalculatorModel() {
 		pile=new Stack<Double>();
 	}

@@ -9,13 +9,17 @@ public class CalculatorControler implements CalculatorControlerInterface{
 	public CalculatorModel model;
 	public String accu;
 	
+	//Constructor
 	public CalculatorControler() {
 		this.model=new CalculatorModel();
 		accu="";
 	}
 	
-	public void change(String accu){};
-	public void change(Stack<Double> pile){};
+	public void change(String accu)
+	{};
+	
+	public void change(Stack<Double> pile)
+	{};
 	
 	
 	public void appui_virg() {

@@ -4,12 +4,13 @@ import java.util.Stack;
 
 public class CalculatorModel implements CalculatorModelInterface {
 	private Stack<Double> pile;
-	/* private Double accu;  Réfléchir à comment utiliser le accu*/
+
 	
 	public CalculatorModel() {
 		pile=new Stack<Double>();
 	}
 	
+
 	public void push(Double a) {
 		pile.push(a);
 	}
@@ -70,8 +71,8 @@ public class CalculatorModel implements CalculatorModelInterface {
 		if (pile.size()>1) {
 			Double term1=pop();
 			Double term2=pop();
-			if(term2!=0) {
-			push(term1/term2);
+			if(term1!=0) {
+			push(term2/term1);
 			}
 			else {
 				push(term2);

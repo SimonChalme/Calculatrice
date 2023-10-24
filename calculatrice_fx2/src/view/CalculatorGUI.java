@@ -1,5 +1,6 @@
 package view;
 import java.util.Stack;
+import javafx.scene.layout.*;
 import javafx.scene.Scene;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.BorderPane;
@@ -124,7 +125,7 @@ public class CalculatorGUI extends Application implements CalculatorGUIInterface
 			bouton_sign.setPrefSize(85,85); 
 			gp.add(bouton_sign,0,4);
 			bouton_sign.setOnAction(event->{
-				controleur.accu="-";
+				controleur.appui_inv();
 				affichage.setText(controleur.accu);
 				});
 			
@@ -181,9 +182,17 @@ public class CalculatorGUI extends Application implements CalculatorGUIInterface
 				affichage.setText("");
 				});
 		   
+			Button bouton_retour=new Button("<-");
+	    	bouton_retour.setPrefSize(85,85); 
+			gp.add(bouton_retour,1,0);
+			bouton_retour.setOnAction(event->{
+				controleur.accu=controleur.appui_retour();
+				affichage.setText(controleur.accu);
+				});
 		    
 			
-			Scene scene = new Scene(bp,340,400);	
+			Scene scene = new Scene(bp,340,400);
+			scene.getStylesheets().add(getClass().getResource("Style.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.show();
 		} catch(Exception e) {

@@ -6,8 +6,8 @@ import model.CalculatorModel;
 
 
 public class CalculatorControler implements CalculatorControlerInterface{
-	public CalculatorModel model;
-	public String accu;
+	private CalculatorModel model;
+	private String accu;
 	
 	//Constructor
 	public CalculatorControler() {
@@ -15,18 +15,27 @@ public class CalculatorControler implements CalculatorControlerInterface{
 		accu="";
 	}
 	
-	public void change(String accu)
-	{};
+	public CalculatorModel getModel(){
+		return model;
+	}
 	
-	public void change(Stack<Double> pile)
-	{};
+	public String getAccu() {
+		return accu;
+	}
+	
+	public void setAccu(String a) {
+		accu=accu+a;
+	}
+	
+	public void setAccuVide() {
+		accu="";
+	}
 	
 	
 	public void appui_virg() {
 	}
 	
-	public void appui_sign() {	
-	}
+
 	
 	public void appui_plus() {
 		model.add();
@@ -57,9 +66,11 @@ public class CalculatorControler implements CalculatorControlerInterface{
 	}
 	
 	public void appui_entrer() {
-		Double accuDouble = Double.parseDouble(accu);
-		model.push(accuDouble);
-		accu="";
+		if(accu!="") {
+			Double accuDouble = Double.parseDouble(accu);
+			model.push(accuDouble);
+			accu="";
+		}
 	}
 	
 	public void appui_C() {
@@ -83,11 +94,39 @@ public class CalculatorControler implements CalculatorControlerInterface{
 	public String appui_retour() {
 		if(accu.length()>0) {
 			String accu_temp=accu.substring(0, accu.length() - 1);
+			accu="";
 			return accu_temp;
 		}
 		else {
 			return accu;
 		}
 		}
+	
+	public String setAffichage_2(){
+		Stack<Double >pile=model.getPile();
+		Double a=pile.pop();
+		pile.push(a);
+		return (Double.toString(a));
+	}
+	
+	public String setAffichage_3() {
+		Stack<Double >pile=model.getPile();
+		Double a=pile.pop();
+		Double b=pile.pop();
+		pile.push(b);
+		pile.push(a);
+		return(Double.toString(b));
+	}
+	
+	public void appui_swap() {
+		model.swap();
+	}
+	
+	public void change(String accu) {
+		
+	};
+	public void change(Stack<Double> pile) {
+		
+	};
 
 }

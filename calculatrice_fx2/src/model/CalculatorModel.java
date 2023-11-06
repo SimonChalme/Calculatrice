@@ -10,6 +10,9 @@ public class CalculatorModel implements CalculatorModelInterface {
 		pile=new Stack<Double>();
 	}
 	
+	public Stack<Double> getPile(){
+		return pile;
+	}
 
 	public void push(Double a) {
 		pile.push(a);

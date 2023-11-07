@@ -10,14 +10,19 @@ public class CalculatorModel implements CalculatorModelInterface {
 		pile=new Stack<Double>();
 	}
 	
+	/* implémentation du Getter, renvoie la pile*/
 	public Stack<Double> getPile(){
 		return pile;
 	}
 
+	/* envoie le double a en haute de la pile*/
 	public void push(Double a) {
 		pile.push(a);
 	}
 	
+	/*Si la pile est non vide, affiche le premier élément
+	 * (qui est ensuite supprimé)
+	 */
 	public Double pop() {
 		if(pile.size()>0) {
 			return(pile.pop());
@@ -27,14 +32,17 @@ public class CalculatorModel implements CalculatorModelInterface {
 		}
 	}
 	
+	/* Supression du contenu de la pile*/
 	public void clear() {
 		pile.clear();
 	}
 	
+	/*Supression du premier élément de la pile*/
 	public void drop() {
 		pop();
 	}
 	
+	/* échange des deux premiers éléments de la pile*/
 	public void swap() {
 		Double term1=pop();
 		Double term2=pop();
@@ -43,6 +51,9 @@ public class CalculatorModel implements CalculatorModelInterface {
 		
 	}
 	
+	/* Si la pile possède plus de deux élément, on les addition
+	 * et on envoie le resulat dans la pile
+	 */
 	public void add() {
 		if (pile.size()>1) {
 			Double term1=pop();
@@ -52,6 +63,9 @@ public class CalculatorModel implements CalculatorModelInterface {
 		else {}
 	}
 	
+	/* Si la pile possède plus de deux élément, on les soustrait
+	 * et on envoie le resulat dans la pile
+	 */
 	public void substract() {
 		if (pile.size()>1) {
 			Double term1=pop();
@@ -61,6 +75,9 @@ public class CalculatorModel implements CalculatorModelInterface {
 		else {}
 	}
 	
+	/* Si la pile possède plus de deux élément, on les multiplie
+	 * et on envoie le resulat dans la pile
+	 */
 	public void multiply() {
 		if (pile.size()>1) {
 			Double term1=pop();
@@ -70,6 +87,9 @@ public class CalculatorModel implements CalculatorModelInterface {
 		else {}
 	}
 	
+	/* Si la pile possède plus de deux élément et que le premier est non nul, on les divise
+	 * et on envoie le resulat dans la pile, sinon on remet les deux éléments dans la pile
+	 */
 	public void divide() {
 		if (pile.size()>1) {
 			Double term1=pop();
@@ -84,6 +104,9 @@ public class CalculatorModel implements CalculatorModelInterface {
 		}
 		}
 	
+	/* Si la pile possède plus d'un élément, on prends son inverse
+	 * et on envoie le resulat dans la pile
+	 */
 	public void opposite() {
 		if(pile.size()>0) {
 			Double term1=pop();

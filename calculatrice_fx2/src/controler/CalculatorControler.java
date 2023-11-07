@@ -1,21 +1,20 @@
 package controler;
-
+import model.CalculatorModelInterface;
 import java.util.Stack;
-import model.CalculatorModel;
-
-
 
 public class CalculatorControler implements CalculatorControlerInterface{
-	private CalculatorModel model;
+	private CalculatorModelInterface model;
 	private String accu;
 	
-	//Constructor
-	public CalculatorControler() {
-		this.model=new CalculatorModel();
+	//Constructeur
+	public CalculatorControler(CalculatorModelInterface model) {
+		this.model=model;
 		accu="";
 	}
 	
-	public CalculatorModel getModel(){
+	/*Implémentation des getter et des setters, avec l'élément voulu en retour pour les getter
+	 * et la modification de l'éléments voulu pour les setter*/
+	public CalculatorModelInterface getModel(){
 		return model;
 	}
 	
@@ -27,16 +26,16 @@ public class CalculatorControler implements CalculatorControlerInterface{
 		accu=accu+a;
 	}
 	
+	/*Cas particulier de setAccu, pour remettre à 0 accu, on ne peut pas passer par la concaténation,
+	 * toutefois cette dernière est nécessaire pour écrire des nombres avec plus d'un chiffre
+	 * on traite donc ce cas à part dasn une méthode qui réinitialise accu*/
 	public void setAccuVide() {
 		accu="";
 	}
 	
 	
-	public void appui_virg() {
-	}
-	
-
-	
+	/*Pour les méthode appui_plus / moins / multiplie / divise, on appelle la méthode du modèle
+	 * correspondant et on fait prendre la valeur obtenue à accu pour l'affichage de la réponse*/
 	public void appui_plus() {
 		model.add();
 		Double a=model.pop();
@@ -65,6 +64,7 @@ public class CalculatorControler implements CalculatorControlerInterface{
 		accu=Double.toString(a);
 	}
 	
+	/* Si le accu n'est pas vide, on envoie sa valeur en double dans la pile*/
 	public void appui_entrer() {
 		if(accu!="") {
 			Double accuDouble = Double.parseDouble(accu);
@@ -73,17 +73,18 @@ public class CalculatorControler implements CalculatorControlerInterface{
 		}
 	}
 	
+	/*On fait appel à la fonction pour supprimer tout les éléments de la pile*/
 	public void appui_C() {
 		model.clear();
 		accu="";
 	}
 	
+	/*Si accu est vide on renvoie l'inverse du premier élément de la pile, sinon on revoie -accu*/
 	public void appui_inv() {
 		if(accu.isEmpty()) {
 			Double a=model.pop();
 			accu=Double.toString(-a);
 			model.push(a);
-			/* Si on veut inverser le dernier membre obtenu car on a pas accès à ce dernier quand celui ci est dans l'accu, il est instantanément push et donc l'accu est réinitialisé*/
 		}
 		else {
 			Double accuDouble = Double.parseDouble(accu);
@@ -91,6 +92,8 @@ public class CalculatorControler implements CalculatorControlerInterface{
 		}
 	}
 	
+	/*Si le accu est non nul on crée un nouveau String avec la valeur de accu sans le dernier caractère
+	 * et on le renvoie pour l'affichge*/
 	public String appui_retour() {
 		if(accu.length()>0) {
 			String accu_temp=accu.substring(0, accu.length() - 1);
@@ -102,6 +105,12 @@ public class CalculatorControler implements CalculatorControlerInterface{
 		}
 		}
 	
+	/* on appelle la méthode qui échange les deux premier éléments de la pile*/
+	public void appui_swap() {
+		model.swap();
+	}
+	
+	/*On récupère le première élément de la pile pour l'affichage dans la seconde zone de texte*/
 	public String setAffichage_2(){
 		Stack<Double >pile=model.getPile();
 		Double a=pile.pop();
@@ -109,6 +118,7 @@ public class CalculatorControler implements CalculatorControlerInterface{
 		return (Double.toString(a));
 	}
 	
+	/*On récupère le deuxième élément de la pile pour l'affichage dans la troisième zone de texte*/
 	public String setAffichage_3() {
 		Stack<Double >pile=model.getPile();
 		Double a=pile.pop();
@@ -118,15 +128,7 @@ public class CalculatorControler implements CalculatorControlerInterface{
 		return(Double.toString(b));
 	}
 	
-	public void appui_swap() {
-		model.swap();
-	}
 	
-	public void change(String accu) {
-		
-	};
-	public void change(Stack<Double> pile) {
-		
-	};
+	
 
 }

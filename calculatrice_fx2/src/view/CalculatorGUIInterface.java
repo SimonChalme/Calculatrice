@@ -1,9 +1,10 @@
 package view;
-import java.util.Stack;
+
+
+import javafx.scene.Scene;
 
 public interface CalculatorGUIInterface {
-	public void affiche();
-	public void change(String accu);
-	public void change(Stack<Double> stackData);
 	
+	/* déclaration de la méthode affiche qui renvoie la scène pour l'interface graphique*/
+	public Scene affiche();	
 }
